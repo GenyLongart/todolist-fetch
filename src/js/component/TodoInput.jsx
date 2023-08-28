@@ -1,19 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const TodoInput = ({ addTodo }) => {
-  const [value, setvalue] = useState('');
-
+const TodoInput = ({ addTodo, setNewTodo}) => {
   const handleEnter = (e) => {
+    
     if (e.code === 'Enter') {
-      addTodo(value);
-      setvalue('');
+      addTodo();
     }
   }
   return (
     <>
       <div className='TodoInput' onKeyUp={handleEnter}>
-        <input type="text" value={value} id="" className='todo-input' placeholder='Qué tarea desea realizar?'
-          onChange={(e) => setvalue(e.target.value)} />
+        <input type="text" id="" className='todo-input' placeholder='Qué tarea desea realizar?' onChange={(e) => setNewTodo(e.target.value)} />
       </div>
     </>
   )
