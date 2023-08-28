@@ -1,12 +1,56 @@
-
-/* 
-
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
-
-*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: #dedde0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .App {
+    text-align: center;
+  }
+  
+  h1 {
+    color: #9d9999;
+  }
+  
+  .TodoWrapper {
+    background: #ededf0;
+    padding: 2rem;
+    border-radius: 5px;
+  }
+  
+  .TodoInput {
+    width: 100%;
+  }
+  
+  .todo-input {
+    outline: none;
+    background: none;
+    border: 1px solid #9b9a9d;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 300px;
+    color: #434343;
+  }
+  
+  .todo-input::placeholder {
+    color: #4f4d4d4d;
+  }
+  
+  .Todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f7f6fa;
+    color: #595858;
+    padding: 0.75rem 1rem;
+    border: 0 0 2px 0;
+    cursor: pointer;
+  }
