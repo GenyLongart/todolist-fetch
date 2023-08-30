@@ -8,7 +8,7 @@ const TodoContainer = () => {
 
   useEffect(() => {
     getTodos();
-  },[newTodo])
+  }, [newTodo])
 
   const sendTodos = async (allTodos) => {
     const response = await fetch(
@@ -27,40 +27,54 @@ const TodoContainer = () => {
 
   const addTodo = () => {
     console.log(newTodo)
-      const task = {
-        label: newTodo,
-        done: false,
-        id: newTodo
-      };
-      sendTodos([...todos, task]);
+    const task = {
+      label: newTodo,
+      done: false,
+      id: newTodo
+    };
+    sendTodos([...todos, task]);
   };
 
   const getTodos = () => {
-   fetch('https://playground.4geeks.com/apis/fake/todos/user/GenyLongart', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then((response) => response.json()) 
-    .then((data) => setTodos(data))
-    .catch(error => console.log(error.message))
+
+    if (!todos || todos == undefined) {
+      fetch('https://playground.4geeks.com/apis/fake/todos/user/GenyLongart', {
+        method: 'POST',
+        body: JSON.stringify([]),
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then((response) => response.json())
+        .then((data) => setTodos(data))
+        .catch(error => console.log(error.message))
+    } else {
+      fetch('https://playground.4geeks.com/apis/fake/todos/user/GenyLongart', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then((response) => response.json())
+        .then((data) => setTodos(data))
+        .catch(error => console.log(error.message))
+    }
+
+
   }
 
-  
+
   const deleteTodo = (id) => {
     const newTodoList = todos.filter(todo => todo.id !== id)
     sendTodos(newTodoList)
     setTodos(newTodoList);
   };
-  
+
 
   return (
     <>
       <h1>Todos</h1>
       <div className='TodoWrapper'>
-        <TodoInput addTodo={addTodo} setNewTodo={setNewTodo} newTodo={newTodo}/>
+        <TodoInput addTodo={addTodo} setNewTodo={setNewTodo} newTodo={newTodo} />
         {todos !== null && todos !== undefined && todos.length > 0 ? (
           todos.map((todo, index) => (
-            <Todo task={todo} key={index} deleteTodo={deleteTodo}/>
+            <Todo task={todo} key={index} deleteTodo={deleteTodo} />
           ))
         ) : (
           <p>No hay tareas pendientes</p>
