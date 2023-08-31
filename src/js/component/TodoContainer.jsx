@@ -36,8 +36,9 @@ const TodoContainer = () => {
   };
 
   const getTodos = () => {
+    console.log(todos)
 
-    if (!todos || todos == undefined) {
+    if (!todos) {
       fetch('https://playground.4geeks.com/apis/fake/todos/user/GenyLongart', {
         method: 'POST',
         body: JSON.stringify([]),
